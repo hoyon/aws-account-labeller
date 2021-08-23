@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "name": "AWS account label",
+  "version": "1.0",
+
+  "description": "Makes current account more obvious",
+  
+  "background": {
+      "scripts": ["index.js"]
+  },
+
+  "options_ui": {
+      "page": "options.html",
+      "browser_style": true,
+      "chrome_style": true
+  },
+  "browser_specific_settings": {
+      "gecko": {
+          "id": "aws-label@hoyon.dev",
+          "strict_min_version": "57.0a1"
+      }
+  },
+  "permissions": [
+      "storage",
+      "*://*.console.aws.amazon.com/*"
+  ]
+}
