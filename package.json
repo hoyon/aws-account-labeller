@@ -1,0 +1,15 @@
+{
+  "name": "aws_account_label",
+  "packageManager": "yarn@3.0.2",
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "@rollup/plugin-html": "^0.2.4",
+    "@rollup/plugin-node-resolve": "^13.0.5",
+    "rollup": "^2.58.0",
+    "rollup-plugin-svelte": "^7.1.0",
+    "svelte": "^3.43.1"
+  }
+}
