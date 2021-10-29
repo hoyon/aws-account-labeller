@@ -12,8 +12,7 @@
  }
 
  function add() {
-   alias_list.push({account_id: "", alias: ""});
-   alias_list = alias_list;
+   alias_list = [...alias_list, {account_id: "", alias: ""}];
  }
 
  function delete_item(index) {
@@ -30,7 +29,7 @@
 {#each alias_list as alias, i}
   <div class="entry">
     <input minlength="12" maxlength="12" bind:value={alias.account_id}>
-    <input bind:value="{alias.alias}">
+    <input bind:value={alias.alias}>
     <button on:click={() => delete_item(i)}>Delete</button>
   </div>
 {/each}
