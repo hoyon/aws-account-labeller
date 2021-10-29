@@ -22,6 +22,7 @@
   },
   "permissions": [
       "storage",
-      "*://*.console.aws.amazon.com/*"
+      "*://*.console.aws.amazon.com/*",
+      "tabs"
   ]
 }

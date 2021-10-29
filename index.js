@@ -19,16 +19,15 @@ function isJson(item) {
 browser.tabs.onUpdated.addListener(
     function ( tabId, changeInfo, tab ) { 
         if (changeInfo.status === "complete") {
-            let gettingItem = browser.storage.sync.get('aliases');
+          browser.tabs.executeScript(tabId, {file: 'label.js'}).then(() => {
+              browser.storage.sync.get('aliases').then((aliases) => {
+                browser.tabs.sendMessage(tabId, aliases)
+              }).catch(() => {
+                browser.tabs.sendMessage(tabId, "[]")
+              });
+            }
+          );
 
-            gettingItem.then((res) => {
-                if (res.aliases && isJson(res.aliases)) {
-                    let code = `window.aws_account_aliases = ${res.aliases};`;
-                    browser.tabs.executeScript(tabId, {code: code});
-                }
-
-                browser.tabs.executeScript(tabId, {file: 'label.js'});
-            });
         }
     }, {urls: ['*://*.console.aws.amazon.com/*']});
 

@@ -15,7 +15,7 @@
  let saveFinished = false;
 
  function save(event) {
-   saveAliases(event.detail.aliases).then(() => {
+   saveAliases(event.detail.alias_json).then(() => {
      saveFinished = true;
    });
  }
@@ -27,7 +27,7 @@
   {#await aliasesPromise}
     <p>loading aliases...</p>
   {:then aliases}
-    <Form aliases={aliases} on:save={save} />
+    <Form alias_json={aliases} on:save={save} />
   {/await}
 
   {#if saveFinished}
