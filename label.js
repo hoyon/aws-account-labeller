@@ -1,6 +1,5 @@
 browser.runtime.onMessage.addListener(({aliases}) => {
-  const roleLabelClass = 'ThRjn7o-KwO0459UzmvoU';
-  const roleLabel = document.getElementsByClassName(roleLabelClass)[0];
+  const roleLabel = document.querySelector('[data-testid=awsc-nav-account-menu-button] > span:first-child');
 
   const accountAliases = new Map(JSON.parse(aliases).map(a => [a.account_id, a.alias]));
 
@@ -10,7 +9,8 @@ browser.runtime.onMessage.addListener(({aliases}) => {
   let role = results[1];
   let username = results[3].replace(/@.*$/, "");
 
-  let accountId = document.querySelector('[data-testid=aws-my-account-details]').innerText;
+  const details = document.querySelector('[data-testid=account-detail-menu]').innerText;
+  const accountId = details.match(/\d\d\d\d-\d\d\d\d-\d\d\d\d/)[0].replaceAll('-', '');
 
   let alias = accountAliases.get(accountId); 
 
@@ -19,5 +19,5 @@ browser.runtime.onMessage.addListener(({aliases}) => {
     accountDisplay = alias;
   }
   
-  roleLabel.innerHTML = `${accountDisplay} / ${role} / ${username}`;
+  roleLabel.innerText = `${accountDisplay} / ${role} / ${username}`;
 });
